@@ -5,6 +5,8 @@ Demonstrates two inter-process communication patterns using Python's multiproces
 
 Each pattern runs a "ping-pong" style workload for a defined number of steps, measuring
 performance and allowing profiling with tools like py-spy.
+
+Original inspiration: pufferlib
 """
 
 import multiprocessing
@@ -67,7 +69,7 @@ def run_blocking_experiment():
 
 
 # ==========================================
-# 2. SPINNING (PufferLib/HPC Style)
+# 2. SPINNING
 # ==========================================
 def spinning_worker(flag, counter):
     """
@@ -76,7 +78,7 @@ def spinning_worker(flag, counter):
     """
     while True:
         # BUSY WAIT: The CPU runs hot here checking the value
-        # PufferLib optimization: No OS sleep, immediate reaction.
+        # optimization: No OS sleep, immediate reaction.
         while flag.value == 0:
             pass
 
